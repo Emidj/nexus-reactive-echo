@@ -1,0 +1,221 @@
+uniform float4x4 ViewProj;
+uniform texture2d image;
+uniform texture2d history;
+uniform float amount;
+uniform float feedback;
+uniform float zoom;
+uniform float angle;
+uniform float2 offset;
+uniform float2 dimensions;
+sampler_state linear_sampler { Filter = Linear; AddressU = Clamp; AddressV = Clamp; };
+struct Vertex { float4 pos : POSITION; float2 uv : TEXCOORD0; };
+Vertex VS(Vertex v) { v.pos = mul(float4(v.pos.xyz, 1.0), ViewProj); return v; }
+uniform float recursion_mode;
+uniform float2 recursion_center;
+float4 history_at(float2 uv)
+{
+    if(uv.x<0.0 || uv.x>1.0 || uv.y<0.0 || uv.y>1.0)return float4(0.0,0.0,0.0,0.0);
+    return history.Sample(linear_sampler,uv);
+}
+float2 transformed_uv(float2 uv,float rotation,float scale,float2 shift)
+{
+    float2 center=recursion_mode<0.5?float2(0.5,0.5):recursion_center;
+    float2 p=(uv-center)*dimensions-shift;
+    float c=cos(rotation),s=sin(rotation);
+    return float2(c*p.x+s*p.y,-s*p.x+c*p.y)/scale/dimensions+center;
+}
+float4 recursive_history(float2 uv)
+{
+    if(recursion_mode<0.5)return history_at(transformed_uv(uv,angle,zoom,offset));
+    return history_at(transformed_uv(uv,0.0,zoom,offset));
+}
+uniform float audio_color;
+uniform float reactive_mix;
+float3 shift_audio_color(float3 rgb){
+    float y=dot(rgb,float3(.299,.587,.114));
+    float i=dot(rgb,float3(.595716,-.274453,-.321263)),q=dot(rgb,float3(.211456,-.522591,.311135));
+    float ii=i*cos(audio_color)-q*sin(audio_color),qq=i*sin(audio_color)+q*cos(audio_color);
+    return saturate(float3(y+.9563*ii+.6210*qq,y-.2721*ii-.6474*qq,y-1.107*ii+1.7046*qq));
+}
+float4 PS(Vertex v) : TARGET
+{
+    float4 current = image.Sample(linear_sampler, v.uv);
+    if (current.a <= 0.0) return float4(0.0, 0.0, 0.0, 0.0);
+    if (amount <= 0.0) return current;
+    float2 p = (v.uv - 0.5) * dimensions - offset;
+    float c = cos(angle), s = sin(angle);
+    float2 uv = float2(c*p.x + s*p.y, -s*p.x + c*p.y) / zoom / dimensions + 0.5;
+    float inside = (uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0) ? 1.0 : 0.0;
+    float4 past = recursive_history(v.uv);
+    float3 straight = past.a > 0.00001 ? past.rgb / past.a : float3(0.0, 0.0, 0.0);
+    float weight = amount * feedback * saturate(past.a);
+    return float4(lerp(current.rgb, straight * current.a, weight), current.a);
+}
+technique Draw { pass { vertex_shader = VS(v); pixel_shader = PS(v); } }
+
+/* The keyed foreground never enters the coloured trail's RGB history. */
+uniform float history_valid;
+uniform float hue_step;
+float4 PSCapture(Vertex v) : TARGET { return image.Sample(linear_sampler, v.uv); }
+technique Capture { pass { vertex_shader = VS(v); pixel_shader = PSCapture(v); } }
+float4 PSSilhouette(Vertex v) : TARGET
+{
+    float a = image.Sample(linear_sampler, v.uv).a;
+    float2 p = (v.uv - 0.5) * dimensions - offset;
+    float c = cos(angle), s = sin(angle);
+    float2 uv = float2(c*p.x + s*p.y, -s*p.x + c*p.y) / zoom / dimensions + 0.5;
+    float inside = (uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0) ? 1.0 : 0.0;
+    float4 past = recursive_history(v.uv) * history_valid;
+    /* Half an RGBA8 quantum prevents tiny alpha values from rounding forever. */
+    past *= past.a > 0.0 ? max(0.0,past.a*feedback-0.5/255.0)/past.a : 0.0;
+    /* HSV hue rotation preserves the saturated colour as the silhouette ages. */
+    float3 rgb = past.a > 0.00001 ? past.rgb / past.a : float3(0.0,0.0,0.0);
+    float4 K = float4(0.0, -0.3333333333, 0.6666666667, -1.0);
+    float4 q = rgb.g < rgb.b ? float4(rgb.bg,K.wz) : float4(rgb.gb,K.xy);
+    float4 t = rgb.r < q.x ? float4(q.xyw,rgb.r) : float4(rgb.r,q.yzx);
+    float d = t.x - min(t.w,t.y);
+    float h = abs(t.z + (t.w-t.y)/(6.0*d+0.000001));
+    float sat = d/(t.x+0.000001);
+    float3 wave = abs(frac(float3(h,h,h)+hue_step+float3(0.0,0.6666666667,0.3333333333))*6.0-3.0);
+    float3 shifted = t.x*lerp(float3(1.0,1.0,1.0),saturate(wave-1.0),sat);
+    return float4(float3(1.0,0.55,0.03)*a + shifted*past.a*(1.0-a),
+                  a + past.a*(1.0-a));
+}
+technique Silhouette { pass { vertex_shader = VS(v); pixel_shader = PSSilhouette(v); } }
+float4 PSTrail(Vertex v) : TARGET { return image.Sample(linear_sampler,v.uv)*amount; }
+technique Trail { pass { vertex_shader = VS(v); pixel_shader = PSTrail(v); } }
+
+uniform texture3d color_lut;
+uniform float exposure;
+uniform float contrast;
+uniform float saturation;
+uniform float hue;
+uniform float lut_strength;
+uniform float3 lut_scale;
+uniform float3 lut_offset;
+sampler_state lut_sampler { Filter = Linear; AddressU = Clamp; AddressV = Clamp; AddressW = Clamp; };
+float4 PSColor(Vertex v) : TARGET
+{
+    float4 pixel = image.Sample(linear_sampler, v.uv);
+    if (pixel.a <= 0.0) return float4(0.0, 0.0, 0.0, 0.0);
+    float3 rgb = pixel.rgb / pixel.a;
+    float3 graded = (rgb * exp2(exposure) - 0.5) * contrast + 0.5;
+    float luma = dot(graded, float3(0.2126, 0.7152, 0.0722));
+    graded = lerp(float3(luma, luma, luma), graded, saturation);
+    if (hue != 0.0) {
+        float yy = dot(graded, float3(0.299, 0.587, 0.114));
+        float ii = dot(graded, float3(0.595716, -0.274453, -0.321263));
+        float qq = dot(graded, float3(0.211456, -0.522591, 0.311135));
+        float ir = ii*cos(hue) - qq*sin(hue);
+        float qr = ii*sin(hue) + qq*cos(hue);
+        graded = float3(yy + 0.9563*ir + 0.6210*qr,
+                        yy - 0.2721*ir - 0.6474*qr,
+                        yy - 1.1070*ir + 1.7046*qr);
+    }
+    graded = shift_audio_color(saturate(graded));
+    if (lut_strength > 0.0) {
+        float3 mapped = color_lut.Sample(lut_sampler, graded*lut_scale+lut_offset).rgb;
+        graded = lerp(graded, saturate(mapped), lut_strength);
+    }
+    return float4(lerp(rgb, graded, amount) * pixel.a, pixel.a);
+}
+technique Color { pass { vertex_shader = VS(v); pixel_shader = PSColor(v); } }
+
+/* Grade only the visible trail, never the stored history or the foreground. */
+float4 PSTrailColor(Vertex v) : TARGET { return PSColor(v)*amount; }
+technique TrailColor { pass { vertex_shader = VS(v); pixel_shader = PSTrailColor(v); } }
+
+uniform float3 gradient_near;
+uniform float3 gradient_mid;
+uniform float3 gradient_far;
+uniform float gradient_middle;
+uniform float gradient_bands;
+float4 PSTrailGradient(Vertex v) : TARGET
+{
+    float4 pixel=image.Sample(linear_sampler,v.uv);
+    if(pixel.a <= 0.0) return float4(0.0,0.0,0.0,0.0);
+    /* Map remaining trail opacity, not foreground brightness or camera colour. */
+    float t=1.0-saturate(pixel.a);
+    if (gradient_bands > 1.0) t=saturate(floor(t*gradient_bands)/(gradient_bands-1.0));
+    float3 color=t<gradient_middle ? lerp(gradient_near,gradient_mid,t/gradient_middle) :
+        lerp(gradient_mid,gradient_far,(t-gradient_middle)/(1.0-gradient_middle));
+    color=shift_audio_color(color);
+    return float4(lerp(pixel.rgb,color*pixel.a,amount),pixel.a)*amount;
+}
+technique TrailGradient { pass { vertex_shader = VS(v); pixel_shader = PSTrailGradient(v); } }
+
+/* Compose the untouched foreground and the trail in one output draw. */
+uniform texture2d foreground_image;
+float4 compose_foreground(Vertex v,float4 trail)
+{
+    float4 front=foreground_image.Sample(linear_sampler,v.uv);
+    return front+trail*(1.0-front.a);
+}
+float4 PSComposite(Vertex v) : TARGET { return compose_foreground(v,PSTrail(v)); }
+float4 PSCompositeColor(Vertex v) : TARGET { return compose_foreground(v,PSTrailColor(v)); }
+float4 PSCompositeGradient(Vertex v) : TARGET { return compose_foreground(v,PSTrailGradient(v)); }
+technique Composite { pass { vertex_shader = VS(v); pixel_shader = PSComposite(v); } }
+technique CompositeColor { pass { vertex_shader = VS(v); pixel_shader = PSCompositeColor(v); } }
+technique CompositeGradient { pass { vertex_shader = VS(v); pixel_shader = PSCompositeGradient(v); } }
+
+/* Independent reference chain: colour injection before recursive alpha composition. */
+uniform texture3d base_lut;
+uniform texture3d reactive_lut;
+uniform float3 base_lut_scale;
+uniform float3 base_lut_offset;
+uniform float3 reactive_lut_scale;
+uniform float3 reactive_lut_offset;
+uniform float base_lut_enabled;
+uniform float reactive_lut_enabled;
+uniform float reference_opacity;
+uniform float reference_level;
+uniform float reference_gradient;
+float ref_decode_channel(float x){return x<=0.04045?x/12.92:pow((x+0.055)/1.055,2.4);}
+float ref_encode_channel(float x){return x<=0.0031308?12.92*x:1.055*pow(max(0.0,x),1.0/2.4)-0.055;}
+float3 ref_decode(float3 x){return float3(ref_decode_channel(x.r),ref_decode_channel(x.g),ref_decode_channel(x.b));}
+float3 ref_encode(float3 x){return float3(ref_encode_channel(x.r),ref_encode_channel(x.g),ref_encode_channel(x.b));}
+float3 reference_base(float3 rgb_linear)
+{
+    if(base_lut_enabled>0.5)return base_lut.Sample(lut_sampler,saturate(ref_encode(rgb_linear))*base_lut_scale+base_lut_offset).rgb;
+    return rgb_linear;
+}
+float4 PSReference(Vertex v) : TARGET
+{
+    float4 front=image.Sample(linear_sampler,v.uv);
+    float3 rgb=front.a>0.0?front.rgb/front.a:float3(0.0,0.0,0.0);
+    /* Values from the supplied scene: gamma .03, brightness 1, multiply/add blue. */
+    float3 corrected=(pow(ref_decode(saturate(rgb)),float3(1.0/1.03,1.0/1.03,1.0/1.03))+1.0)*
+        ref_decode(float3(11.0,0.0,87.0)/255.0)+ref_decode(float3(10.0,0.0,91.0)/255.0);
+    corrected=reference_base(corrected);
+    if(reference_gradient>0.5){
+        float t=1.0-saturate(reference_level),m=gradient_middle;
+        if(gradient_bands>1.0)t=saturate(floor(t*gradient_bands)/(gradient_bands-1.0));
+        float3 color=t<m?lerp(gradient_near,gradient_mid,t/m):lerp(gradient_mid,gradient_far,(t-m)/(1.0-m));
+        corrected=ref_decode(color);
+    } else if(reactive_lut_enabled>0.5){
+        float3 mapped=reactive_lut.Sample(lut_sampler,saturate(ref_encode(corrected))*reactive_lut_scale+reactive_lut_offset).rgb;
+        corrected=saturate(lerp(corrected,mapped,clamp(reference_level-1.0,-1.0,1.0)*reactive_mix));
+    }
+    corrected=shift_audio_color(corrected);
+    float2 p=(v.uv-0.5)*dimensions-offset;
+    float c=cos(angle),ss=sin(angle);
+    float2 uv=float2(c*p.x+ss*p.y,-ss*p.x+c*p.y)/zoom/dimensions+0.5;
+    float inside=(uv.x>=0.0 && uv.x<=1.0 && uv.y>=0.0 && uv.y<=1.0)?1.0:0.0;
+    float4 past=recursive_history(v.uv)*history_valid;
+    float pa=max(0.0,past.a*feedback-0.5/255.0);
+    float3 past_linear=past.a>0.0?ref_decode(saturate(past.rgb/past.a))*pa:float3(0.0,0.0,0.0);
+    float a=front.a*reference_opacity;
+    float alpha=a+pa*(1.0-a);
+    float3 combined=corrected*a+past_linear*(1.0-a);
+    return alpha>0.0?float4(saturate(ref_encode(combined/alpha))*alpha,alpha):float4(0.0,0.0,0.0,0.0);
+}
+float4 PSReferenceComposite(Vertex v) : TARGET
+{
+    float4 front=foreground_image.Sample(linear_sampler,v.uv);
+    if(base_lut_enabled>0.5 && front.a>0.0)
+        front.rgb=saturate(ref_encode(reference_base(ref_decode(saturate(front.rgb/front.a)))))*front.a;
+    float4 trail=image.Sample(linear_sampler,v.uv)*amount;
+    return front+trail*(1.0-front.a);
+}
+technique Reference { pass { vertex_shader=VS(v);pixel_shader=PSReference(v); } }
+technique ReferenceComposite { pass { vertex_shader=VS(v);pixel_shader=PSReferenceComposite(v); } }

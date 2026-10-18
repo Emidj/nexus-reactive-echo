@@ -1,0 +1,120 @@
+Sin LUT|No LUT|Keine LUT|Aucune LUT|Nessuna LUT
+Presets|Presets|Voreinstellungen|Préréglages|Preimpostazioni
+Elegir un preset|Choose a preset|Voreinstellung auswählen|Choisir un préréglage|Scegli una preimpostazione
+Siluetas cálidas|Warm silhouettes|Warme Silhouetten|Silhouettes chaudes|Sagome calde
+Neón|Neon|Neon|Néon|Neon
+Espiral suave|Gentle swirl|Sanfter Wirbel|Tourbillon doux|Vortice delicato
+Eco suave (modo original)|Soft echo (original mode)|Sanftes Echo (ursprünglicher Modus)|Écho doux (mode original)|Eco delicato (modalità originale)
+Reposo (sin efecto)|Idle (no effect)|Ruhezustand (ohne Effekt)|Repos (sans effet)|Riposo (nessun effetto)
+Reactive 2 (referencia)|Reactive 2 (reference)|Reactive 2 (Referenz)|Reactive 2 (référence)|Reactive 2 (riferimento)
+Aplicar preset|Apply preset|Voreinstellung anwenden|Appliquer le préréglage|Applica preimpostazione
+Volver al ajuste anterior|Restore previous settings|Vorherige Einstellungen wiederherstellen|Rétablir les réglages précédents|Ripristina impostazioni precedenti
+Guardar mi ajuste|Save my settings|Meine Einstellungen speichern|Enregistrer mes réglages|Salva le mie impostazioni
+Recuperar mi ajuste|Restore my settings|Meine Einstellungen wiederherstellen|Rétablir mes réglages|Ripristina le mie impostazioni
+Ajuste personal guardado con este filtro en OBS.|Personal settings saved with this filter in OBS.|Persönliche Einstellungen mit diesem Filter in OBS gespeichert.|Réglages personnels enregistrés avec ce filtre dans OBS.|Impostazioni personali salvate con questo filtro in OBS.
+Todavía no hay un ajuste personal guardado.|No personal settings saved yet.|Noch keine persönlichen Einstellungen gespeichert.|Aucun réglage personnel enregistré.|Nessuna impostazione personale salvata.
+Elegir no aplica cambios hasta pulsar Aplicar. Audio y fuente elegida se conservan. Guardar mi ajuste reemplaza el guardado anterior.|Selecting does not apply changes until you click Apply. Audio and the selected source are preserved. Saving replaces your previous saved settings.|Die Auswahl wird erst mit Anwenden übernommen. Audio und gewählte Quelle bleiben erhalten. Speichern ersetzt die zuvor gespeicherten Einstellungen.|La sélection ne prend effet qu'après un clic sur Appliquer. L'audio et la source choisie sont conservés. L'enregistrement remplace les réglages précédemment enregistrés.|La selezione viene applicata solo premendo Applica. Audio e sorgente scelta vengono mantenuti. Il salvataggio sostituisce le impostazioni salvate in precedenza.
+Para siluetas: colocar NEXUS después del chroma. Intensidad 0 conserva el original.|For silhouettes, place NEXUS after chroma key. Intensity 0 preserves the original.|Für Silhouetten NEXUS nach dem Chroma-Key platzieren. Intensität 0 erhält das Original.|Pour les silhouettes, placer NEXUS après l'incrustation chromatique. Intensité 0 conserve l'original.|Per le sagome, posiziona NEXUS dopo il chroma key. Intensità 0 mantiene l'originale.
+Siluetas detrás del original (requiere chroma previo)|Silhouettes behind the original (chroma key required first)|Silhouetten hinter dem Original (Chroma-Key davor erforderlich)|Silhouettes derrière l'original (incrustation chromatique préalable requise)|Sagome dietro l'originale (chroma key precedente richiesto)
+Modo de recursión|Recursion mode|Rekursionsmodus|Mode de récursion|Modalità ricorsione
+Actual (aprobado)|Current (approved)|Aktuell (freigegeben)|Actuel (validé)|Attuale (approvato)
+Centro X|Center X|Mittelpunkt X|Centre X|Centro X
+Centro Y|Center Y|Mittelpunkt Y|Centre Y|Centro Y
+Recursión de color (referencia Reactive 2)|Color recursion (Reactive 2 reference)|Farbrekursion (Reactive 2-Referenz)|Récursion de couleur (référence Reactive 2)|Ricorsione colore (riferimento Reactive 2)
+Cambio de tono por paso (siluetas)|Hue shift per step (silhouettes)|Farbtonänderung pro Schritt (Silhouetten)|Décalage de teinte par étape (silhouettes)|Variazione tonalità per passo (sagome)
+Expansión adicional con audio (siluetas)|Additional audio expansion (silhouettes)|Zusätzliche Audio-Ausdehnung (Silhouetten)|Expansion audio supplémentaire (silhouettes)|Espansione audio aggiuntiva (sagome)
+Intensidad|Intensity|Intensität|Intensité|Intensità
+Persistencia del eco|Echo persistence|Echo-Persistenz|Persistance de l'écho|Persistenza eco
+Zoom por paso|Zoom per step|Zoom pro Schritt|Zoom par étape|Zoom per passo
+Rotación por paso (grados)|Rotation per step (degrees)|Drehung pro Schritt (Grad)|Rotation par étape (degrés)|Rotazione per passo (gradi)
+Desplazamiento X por paso (px)|X offset per step (px)|X-Versatz pro Schritt (px)|Décalage X par étape (px)|Spostamento X per passo (px)
+Desplazamiento Y por paso (px)|Y offset per step (px)|Y-Versatz pro Schritt (px)|Décalage Y par étape (px)|Spostamento Y per passo (px)
+Limpiar eco|Clear echo|Echo löschen|Effacer l'écho|Cancella eco
+Eco y siluetas|Echo and silhouettes|Echo und Silhouetten|Écho et silhouettes|Eco e sagome
+Color|Color|Farbe|Couleur|Colore
+Color en las estelas|Trail color|Spurfarbe|Couleur des traînées|Colore delle scie
+Colorear estelas|Color trails|Spuren einfärben|Colorer les traînées|Colora scie
+Tipo de color|Color type|Farbtyp|Type de couleur|Tipo di colore
+LUT y ajustes de color|LUT and color adjustments|LUT und Farbeinstellungen|LUT et réglages de couleur|LUT e regolazioni colore
+Degradado|Gradient|Farbverlauf|Dégradé|Sfumatura
+Cálido: amarillo, rojo y violeta|Warm: yellow, red and violet|Warm: Gelb, Rot und Violett|Chaud : jaune, rouge et violet|Caldo: giallo, rosso e viola
+Neón: cian, magenta y violeta|Neon: cyan, magenta and violet|Neon: Cyan, Magenta und Violett|Néon : cyan, magenta et violet|Neon: ciano, magenta e viola
+Fuego|Fire|Feuer|Feu|Fuoco
+Hielo|Ice|Eis|Glace|Ghiaccio
+Personalizado|Custom|Benutzerdefiniert|Personnalisé|Personalizzata
+Synthwave|Synthwave|Synthwave|Synthwave|Synthwave
+Océano|Ocean|Ozean|Océan|Oceano
+Ácido|Acid|Säure|Acide|Acido
+Lava|Lava|Lava|Lave|Lava
+Caramelo|Candy|Bonbon|Bonbon|Caramella
+Aurora|Aurora|Polarlicht|Aurore|Aurora
+Monocromo|Monochrome|Monochrom|Monochrome|Monocromatica
+Oro y petróleo|Gold and teal|Gold und Petrol|Or et bleu pétrole|Oro e petrolio
+Transición de color|Color transition|Farbübergang|Transition de couleur|Transizione colore
+Degradado suave|Smooth gradient|Weicher Farbverlauf|Dégradé doux|Sfumatura morbida
+3 bandas|3 bands|3 Farbstufen|3 bandes|3 bande
+4 bandas|4 bands|4 Farbstufen|4 bandes|4 bande
+6 bandas|6 bands|6 Farbstufen|6 bandes|6 bande
+8 bandas|8 bands|8 Farbstufen|8 bandes|8 bande
+12 bandas|12 bands|12 Farbstufen|12 bandes|12 bande
+Inicio (estela intensa)|Start (strong trail)|Anfang (starke Spur)|Début (traînée intense)|Inizio (scia intensa)
+Color intermedio|Middle color|Mittlere Farbe|Couleur intermédiaire|Colore intermedio
+Final (estela tenue)|End (faint trail)|Ende (schwache Spur)|Fin (traînée légère)|Fine (scia tenue)
+Posición del color intermedio|Middle color position|Position der mittleren Farbe|Position de la couleur intermédiaire|Posizione del colore intermedio
+El degradado sigue la opacidad del historial: inicio intenso y final tenue. No modifica el alpha.|The gradient follows history opacity: strong at the start, faint at the end. It does not change alpha.|Der Farbverlauf folgt der Deckkraft des Verlaufs: am Anfang stark, am Ende schwach. Alpha bleibt unverändert.|Le dégradé suit l'opacité de l'historique : début intense et fin légère. Il ne modifie pas l'alpha.|La sfumatura segue l'opacità dello storico: inizio intenso e fine tenue. Non modifica l'alfa.
+Degradado de las estelas|Trail gradient|Spur-Farbverlauf|Dégradé des traînées|Sfumatura delle scie
+Exposición (pasos)|Exposure (stops)|Belichtung (Blendenstufen)|Exposition (IL)|Esposizione (stop)
+Contraste|Contrast|Kontrast|Contraste|Contrasto
+Saturación|Saturation|Sättigung|Saturation|Saturazione
+Tono (grados)|Hue (degrees)|Farbton (Grad)|Teinte (degrés)|Tonalità (gradi)
+Activar LUT|Enable LUT|LUT aktivieren|Activer la LUT|Attiva LUT
+LUT 3D (.cube)|3D LUT (.cube)|3D-LUT (.cube)|LUT 3D (.cube)|LUT 3D (.cube)
+Intensidad de LUT|LUT strength|LUT-Stärke|Intensité de la LUT|Intensità LUT
+Recargar LUT|Reload LUT|LUT neu laden|Recharger la LUT|Ricarica LUT
+Activar LUT base y primer plano|Enable base and foreground LUT|Basis- und Vordergrund-LUT aktivieren|Activer la LUT de base et du premier plan|Attiva LUT di base e primo piano
+LUT base y primer plano (opcional)|Base and foreground LUT (optional)|Basis- und Vordergrund-LUT (optional)|LUT de base et du premier plan (facultative)|LUT di base e primo piano (facoltativa)
+Activar LUT reactiva|Enable reactive LUT|Reaktive LUT aktivieren|Activer la LUT réactive|Attiva LUT reattiva
+LUT reactiva (p. ej. Thermograph)|Reactive LUT (e.g. Thermograph)|Reaktive LUT (z. B. Thermograph)|LUT réactive (ex. Thermograph)|LUT reattiva (es. Thermograph)
+Opacidad de la copia recursiva|Recursive copy opacity|Deckkraft der rekursiven Kopie|Opacité de la copie récursive|Opacità della copia ricorsiva
+Respuesta del color al audio|Color response to audio|Farbreaktion auf Audio|Réponse de la couleur à l'audio|Risposta colore all'audio
+Nivel de color en modo manual|Color level in manual mode|Farbpegel im manuellen Modus|Niveau de couleur en mode manuel|Livello colore in modalità manuale
+El color se aplica antes de la recursión. El primer plano usa solo la LUT base. Las LUT externas no se incluyen en el instalador.|Color is applied before recursion. The foreground uses only the base LUT. External LUTs are not included in the installer.|Farbe wird vor der Rekursion angewendet. Der Vordergrund verwendet nur die Basis-LUT. Externe LUTs sind nicht im Installer enthalten.|La couleur est appliquée avant la récursion. Le premier plan utilise uniquement la LUT de base. Les LUT externes ne sont pas incluses dans l'installateur.|Il colore viene applicato prima della ricorsione. Il primo piano usa solo la LUT di base. Le LUT esterne non sono incluse nel programma di installazione.
+Cadena de referencia|Reference chain|Referenzkette|Chaîne de référence|Catena di riferimento
+Destinos de audio (combinables)|Audio targets (combinable)|Audio-Ziele (kombinierbar)|Cibles audio (combinables)|Destinazioni audio (combinabili)
+Intensidad LUT|LUT strength|LUT-Stärke|Intensité LUT|Intensità LUT
+Escala|Scale|Skalierung|Échelle|Scala
+Desplazamiento X/Y|X/Y offset|X/Y-Versatz|Décalage X/Y|Spostamento X/Y
+Alpha del feedback|Feedback alpha|Feedback-Alpha|Alpha de la rétroaction|Alfa del feedback
+Cambio de color|Color shift|Farbverschiebung|Décalage de couleur|Variazione colore
+Cantidad: %s|Amount: %s|Stärke: %s|Quantité : %s|Quantità: %s
+Ninguna|None|Keine|Aucune|Nessuna
+Fuente no disponible|Source unavailable|Quelle nicht verfügbar|Source indisponible|Sorgente non disponibile
+Modo reactivo (sin audio, sin efecto)|Reactive mode (no audio, no effect)|Reaktiver Modus (ohne Audio kein Effekt)|Mode réactif (sans audio, sans effet)|Modalità reattiva (senza audio, nessun effetto)
+Fuente de audio OBS|OBS audio source|OBS-Audioquelle|Source audio OBS|Sorgente audio OBS
+Actualizar fuentes|Refresh sources|Quellen aktualisieren|Actualiser les sources|Aggiorna sorgenti
+Magnitud de la reacción|Reaction depth|Reaktionsstärke|Amplitude de la réaction|Ampiezza della reazione
+Sensibilidad (dB)|Sensitivity (dB)|Empfindlichkeit (dB)|Sensibilité (dB)|Sensibilità (dB)
+Umbral de silencio (dB)|Silence threshold (dB)|Stille-Schwellenwert (dB)|Seuil de silence (dB)|Soglia del silenzio (dB)
+Ataque (ms)|Attack (ms)|Anstiegszeit (ms)|Attaque (ms)|Attacco (ms)
+Caída (ms)|Release (ms)|Abklingzeit (ms)|Relâchement (ms)|Rilascio (ms)
+El nivel de la fuente controla la intensidad y la expansión adicional. En silencio desaparece tras la caída. Desactiva este modo solo para un efecto manual constante.|The source level controls intensity and additional expansion. In silence, the effect disappears after release. Disable this mode only for a constant manual effect.|Der Quellpegel steuert Intensität und zusätzliche Ausdehnung. Bei Stille verschwindet der Effekt nach der Abklingzeit. Nur für einen konstanten manuellen Effekt deaktivieren.|Le niveau de la source contrôle l'intensité et l'expansion supplémentaire. Dans le silence, l'effet disparaît après le relâchement. Désactiver ce mode uniquement pour un effet manuel constant.|Il livello della sorgente controlla intensità ed espansione aggiuntiva. Nel silenzio, l'effetto scompare dopo il rilascio. Disattiva questa modalità solo per un effetto manuale costante.
+LUT o degradado solo en las estelas. El original conserva su color.|LUT or gradient on trails only. The original keeps its color.|LUT oder Farbverlauf nur auf Spuren. Das Original behält seine Farbe.|LUT ou dégradé uniquement sur les traînées. L'original conserve sa couleur.|LUT o sfumatura solo sulle scie. L'originale mantiene il suo colore.
+El modo original usa ajustes de color y LUT sobre la imagen final.|Original mode applies color adjustments and LUT to the final image.|Der ursprüngliche Modus wendet Farbeinstellungen und LUT auf das fertige Bild an.|Le mode original applique les réglages de couleur et la LUT à l'image finale.|La modalità originale applica regolazioni colore e LUT all'immagine finale.
+Audio|Audio|Audio|Audio|Audio
+Zoom|Zoom|Zoom|Zoom|Zoom
+Archivo LUT no disponible|LUT file unavailable|LUT-Datei nicht verfügbar|Fichier LUT indisponible|File LUT non disponibile
+No se pudo preparar el lector LUT|Could not initialize LUT reader|LUT-Leser konnte nicht initialisiert werden|Impossible d'initialiser le lecteur LUT|Impossibile inizializzare il lettore LUT
+LUT demasiado grande (máximo 32 MiB)|LUT too large (maximum 32 MiB)|LUT zu groß (maximal 32 MiB)|LUT trop volumineuse (maximum 32 Mio)|LUT troppo grande (massimo 32 MiB)
+Línea LUT demasiado larga|LUT line too long|LUT-Zeile zu lang|Ligne LUT trop longue|Riga LUT troppo lunga
+Cabecera TITLE duplicada o fuera de orden|Duplicate or misplaced TITLE header|Doppelter oder falsch platzierter TITLE-Header|En-tête TITLE en double ou mal placé|Intestazione TITLE duplicata o fuori ordine
+TITLE debe ir entre comillas|TITLE must be quoted|TITLE muss in Anführungszeichen stehen|TITLE doit être entre guillemets|TITLE deve essere tra virgolette
+TITLE no válido|Invalid TITLE|Ungültiger TITLE|TITLE non valide|TITLE non valido
+Formato no compatible: use LUT 3D con DOMAIN_MIN y DOMAIN_MAX|Unsupported format: use a 3D LUT with DOMAIN_MIN and DOMAIN_MAX|Nicht unterstütztes Format: 3D-LUT mit DOMAIN_MIN und DOMAIN_MAX verwenden|Format non pris en charge : utiliser une LUT 3D avec DOMAIN_MIN et DOMAIN_MAX|Formato non supportato: usa una LUT 3D con DOMAIN_MIN e DOMAIN_MAX
+LUT_3D_SIZE debe aparecer una vez y estar entre 2 y 65|LUT_3D_SIZE must appear once and be between 2 and 65|LUT_3D_SIZE muss einmal vorkommen und zwischen 2 und 65 liegen|LUT_3D_SIZE doit apparaître une fois et être compris entre 2 et 65|LUT_3D_SIZE deve comparire una volta ed essere tra 2 e 65
+Sin memoria para cargar LUT|Not enough memory to load LUT|Nicht genügend Speicher zum Laden der LUT|Mémoire insuffisante pour charger la LUT|Memoria insufficiente per caricare la LUT
+Dominio LUT no válido o duplicado|Invalid or duplicate LUT domain|Ungültiger oder doppelter LUT-Bereich|Domaine LUT non valide ou en double|Dominio LUT non valido o duplicato
+Datos LUT no válidos o cantidad de filas incorrecta|Invalid LUT data or row count|Ungültige LUT-Daten oder Zeilenanzahl|Données LUT ou nombre de lignes non valides|Dati LUT non validi o numero di righe errato
+Error al leer LUT|Error reading LUT|Fehler beim Lesen der LUT|Erreur de lecture de la LUT|Errore di lettura della LUT
+LUT incompleta: se requieren exactamente N³ filas|Incomplete LUT: exactly N³ rows required|Unvollständige LUT: genau N³ Zeilen erforderlich|LUT incomplète : exactement N³ lignes requises|LUT incompleta: sono richieste esattamente N³ righe
+DOMAIN_MAX debe ser mayor que DOMAIN_MIN|DOMAIN_MAX must be greater than DOMAIN_MIN|DOMAIN_MAX muss größer als DOMAIN_MIN sein|DOMAIN_MAX doit être supérieur à DOMAIN_MIN|DOMAIN_MAX deve essere maggiore di DOMAIN_MIN
+Formato válido: LUT 3D|Valid format: 3D LUT|Gültiges Format: 3D-LUT|Format valide : LUT 3D|Formato valido: LUT 3D
