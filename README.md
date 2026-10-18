@@ -4,6 +4,16 @@ An independent, audio-reactive GPU echo filter for OBS Studio on Windows x64.
 
 **Current release: 1.2.0 beta.** [Download the installer and source](https://github.com/Emidj/nexus-reactive-echo/releases/tag/v1.2.0).
 
+## Preview
+
+![NEXUS Reactive Echo promotional preview](docs/images/nexus-reactive-echo-preview.jpg)
+
+*Promotional illustration of the audio-reactive echo effect.*
+
+![NEXUS Reactive Echo filter window and presets in OBS](docs/images/obs-filter-presets.png)
+
+*OBS filter window with presets and a synthetic test source, captured during development.*
+
 ## Features
 
 - Recursive video feedback and silhouettes behind the original source.
