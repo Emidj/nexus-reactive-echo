@@ -10,9 +10,9 @@ An independent, audio-reactive GPU echo filter for OBS Studio on Windows x64.
 
 *Promotional illustration of the audio-reactive echo effect.*
 
-![NEXUS Reactive Echo filter window and presets in OBS](docs/images/obs-filter-presets.png)
+![NEXUS Reactive Echo effect example with English settings](docs/images/real-effect-english.jpg)
 
-*OBS filter window with presets and a synthetic test source, captured during development.*
+*Actual plugin output in OBS with English settings, applied to a fictional DJ demonstration image. Static effect preview; this capture does not demonstrate live audio response.*
 
 ## Features
 
